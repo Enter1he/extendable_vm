@@ -95,6 +95,17 @@ pub fn less(left: JexValue, right: JexValue) -> Result<JexValue, Exception> {
     }
 }
 
+pub fn bool_and(left: JexValue, right: JexValue) -> Result<JexValue, Exception> {
+    if let (JexValue::Bool(left), JexValue::Bool(right)) = (&left, &right) {
+        Ok(JexValue::Bool(left && right))
+    } else {
+        Err(Exception::from(OperatorNotDefined::new(
+            "and", &left, &right,
+        )))
+    }
+}
+
+
 pub fn print(value: JexValue) -> Result<JexValue, Exception> {
     println!("{}", value.to_output_string());
     Ok(JexValue::Null(JexNull))
