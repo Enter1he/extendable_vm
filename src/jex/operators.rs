@@ -400,4 +400,23 @@ mod tests {
     fn less_should_not_compare_bools() {
         assert!(less(JexValue::Bool(true), JexValue::Bool(false)).is_err());
     }
+    
+    //AND
+    
+    fn test_1_true_should_not_be_false() {
+        assert!(and(JexValue::Bool(true), JexValue::Bool(false)));
+    }
+    
+    fn test_2_true_should_be_true() {
+        assert!(and(JexValue::Bool(true), JexValue::Bool(true)));
+    }
+    
+    fn test_3_false_should_be_false() {
+        assert!(and(JexValue::Bool(true), JexValue::Bool(true)));
+    }
+    
+    #[test]
+    fn bool_and_should_work_on_bool(){
+        assert!(and(JexValue::Bool(true), JexValue::Int(1)).is_err());
+    }
 }
